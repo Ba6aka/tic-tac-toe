@@ -9,10 +9,12 @@ import renderWinCount from "./js/render-win-count.js"
 
 boardHandler()
 
-const serverHost = window.location.hostname;
-const ws = new WebSocket(`ws://${serverHost}:10000`);
+const serverHost = window.location.hostname
+const serverPort = window.location.port
+const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws'
+const wss = new WebSocket(`${protocol}://${serverHost}:${serverPort}`)
 
-ws.onmessage = (message) => {
+wss.onmessage = (message) => {
 
   const msg = JSON.parse(message.data)
 
@@ -60,5 +62,5 @@ ws.onmessage = (message) => {
 
 
 
-export default ws
+export default wss
 

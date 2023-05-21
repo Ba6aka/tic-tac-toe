@@ -1,4 +1,4 @@
-import ws from "../script.js"
+import wss from "../script.js"
 
 export default boardHandler
 
@@ -13,9 +13,9 @@ function boardHandler() {
         'move': e.target.id
       }
 
-      ws.send(JSON.stringify(state))
+      wss.send(JSON.stringify(state))
     }
-    
+
   })
 
 }
