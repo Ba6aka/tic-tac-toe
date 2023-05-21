@@ -2,7 +2,7 @@ module.exports = { handleServer }
 
 const WebSocket = require('ws');
 const checkWinCondition = require('../check-win-condtion.js')
-const chekConnectionPlayers = require('../check-connection-player.js')
+const checkConnectionPlayers = require('../check-connection-player.js')
 const { updateGame, notUpdateGame } = require('../update-game.js')
 const { serveFile } = require('../serve-file.js')
 const { stringify } = JSON
@@ -26,10 +26,10 @@ async function handleServer(server) {
   wss.on('connection', (ws) => {
     if (!cross) {
       cross = ws
-      currentPlayer = chekConnectionPlayers(currentPlayer, circle, cross)
+      currentPlayer = checkConnectionPlayers(currentPlayer, circle, cross)
     } else if (!circle) {
       circle = ws
-      currentPlayer = chekConnectionPlayers(currentPlayer, circle, cross)
+      currentPlayer = checkConnectionPlayers(currentPlayer, circle, cross)
     }
 
     ws.onclose = () => {
@@ -61,7 +61,7 @@ async function handleServer(server) {
 
               answer = updateGame(state, answerState, player, crossWinCount, circleWinCount)
 
-              if (answer.type === 'win') {
+              if (answer.type === 'win' || answer.type === 'standoff') {
                 state = ['', '', '', '', '', '', '', '', '']
               }
 

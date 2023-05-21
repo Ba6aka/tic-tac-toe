@@ -37,6 +37,9 @@ wss.onmessage = (message) => {
     case 'standoff':
       confirm('standoff case')
       drawBoard(msg.state)
+      setTimeout(() => {
+        drawCleanBoard(msg.state)
+      }, 700);
       renderPlayerInformation(msg.player)
       break
 

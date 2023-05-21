@@ -8,8 +8,8 @@ function updateGame(state, answerState, player, crossWinCount, circleWinCount) {
 
     answer = { type: 'win', msg: answerState, state: state, player: player, crossCountWin: arrayOfWinnerCount[0], circleCountWin: arrayOfWinnerCount[1] }
     
-    state = ['', '', '', '', '', '', '', '', '']
   } else if (answerState === 'Standoff') {
+    state = ['', '', '', '', '', '', '', '', '']
     answer = { type: 'standoff', state: state, player: player }
   }
   else {
