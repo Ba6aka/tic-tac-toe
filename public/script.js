@@ -9,8 +9,7 @@ import renderWinCount from "./js/render-win-count.js"
 
 boardHandler()
 
-const port = 10000
-const ws = new WebSocket(`ws://localhost:${port}`)
+const ws = new WebSocket(`http://localhost:10000`)
 
 ws.onmessage = (message) => {
 
