@@ -1,10 +1,8 @@
 import startGame from "./js/start-game.js"
 import boardHandler from "./js/board-handler.js"
 import drawBoard from "./js/draw-board.js"
-import winHandler from "./js/win-handler.js"
 import drawCleanBoard from "./js/draw-clear-board.js"
 import renderPlayerInformation from "./js/render-player-information.js"
-import disconnectHandler from "./js/disconnect-handler.js"
 import renderWinCount from "./js/render-win-count.js"
 
 boardHandler()
@@ -31,7 +29,7 @@ wss.onmessage = (message) => {
       break
 
     case 'not-update-game-state':
-      confirm('fucking shit')
+      confirm('this cell is already choosed')
       break
 
     case 'standoff':
@@ -46,7 +44,7 @@ wss.onmessage = (message) => {
     case 'win':
       drawBoard(msg.state)
       setTimeout(() => {
-        winHandler(msg.msg)
+        alert(msg.msg)
         drawCleanBoard(msg.state)
         renderPlayerInformation(msg.player)
         renderWinCount(msg.crossCountWin, msg.circleCountWin)
@@ -54,7 +52,7 @@ wss.onmessage = (message) => {
       break
 
     case 'disconnect':
-      disconnectHandler(msg.msg)
+      alert(msg.msg)
       setTimeout(() => {
         drawCleanBoard(msg.state)
         renderPlayerInformation(msg.player)
